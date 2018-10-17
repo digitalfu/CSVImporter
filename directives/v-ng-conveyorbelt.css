@@ -1,0 +1,45 @@
+
+.belt-link {
+    float: left;
+    width: 25%;
+    padding: 20px;
+}
+
+.belt-link-inner {
+    padding: 20px;
+    border-radius: 4px;
+    background: #efefef;
+}
+
+.belt-link.ng-move,
+.belt-link.ng-enter,
+.belt-link.ng-leave {
+    -webkit-transition: all linear 0.25s;
+    transition: all linear 0.25s;
+}
+
+.belt-link.ng-leave.ng-leave-active,
+.belt-link.ng-move,
+.belt-link.ng-enter {
+    opacity: 0;
+
+}
+
+.belt-link.ng-leave.ng-leave-active,
+.belt-link.ng-enter {
+    width: 0%;
+}
+
+.belt-link.ng-leave,
+.belt-link.ng-move.ng-move-active,
+.belt-link.ng-enter.ng-enter-active {
+    opacity: 1;
+    width: 25%;
+}
+
+.belt-link.ng-enter,
+.belt-link.ng-leave {
+    overflow-x: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}

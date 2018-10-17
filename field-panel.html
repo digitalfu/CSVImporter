@@ -1,0 +1,24 @@
+
+<div class="temp-row field-panel-row">
+  <h4>{{foreignField}}</h4>
+</div>
+<div class="temp-row field-panel-row">
+  <ui-select ng-model="fieldModel.selected" 
+             theme="bootstrap" 
+             ng-disabled="disabled" 
+             on-select="select($item, $model)">
+    <ui-select-match placeholder="Select a field ">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices group-by="someFunction" repeat="field in fields | filter: {name: $select.search}" ui-disable-choice="field.isDisabled">
+      <div ng-bind-html="field.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+
+<div class="temp-row field-panel-row">
+  <div class="span6">
+    <button type="button" class="btn-block btn-red" ng-click="ignore(foreignField)">Ignore</button>
+  </div>
+  <div class="span6">
+    <button type="button" class="btn-block btn-green" ng-click="match(foreignField)">Match</button>
+  </div>
+</div>

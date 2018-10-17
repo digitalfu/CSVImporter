@@ -1,0 +1,10 @@
+.v-ng-upload-drop-zone {
+    border:2px dashed #dddddd;
+    width:auto;
+    padding: 40px 0;
+    text-align:center;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #aaa;
+    margin: 50px 0;
+}

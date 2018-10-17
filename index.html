@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="importer">
+
+  <head>
+    <meta charset="utf-8"/>
+    <title>CSV Importer</title>
+
+    <!--
+    IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+    For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim
+    -->
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+      document.createElement('ui-select');
+      document.createElement('ui-select-match');
+      document.createElement('ui-select-choices');
+    </script>
+    <![endif]-->
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-sanitize.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-animate.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"/>
+
+
+    <!-- ui-select files -->
+    <link rel="stylesheet" href="vendor/ui-select.css"/>
+    <link rel="stylesheet" href="directives/v-ng-upload.css"/>
+    <link rel="stylesheet" href="directives/v-ng-conveyorbelt.css"/>
+    <script src="vendor/papaparse.js"></script>
+    <script src="vendor/ui-select.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+    <script src="directives.js"></script>
+    <script src="filters.js"></script>
+    <script src="services.js"></script>
+    <script src="field-schema.js"></script>
+
+    <script src="directives/v-ng-upload.js"></script>
+    <script src="directives/v-ng-conveyorbelt.js"></script>
+    <!-- Select2 theme -->
+    <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css" />-->
+    <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+    <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css" />-->
+    <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap2.css"> -->
+    <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap3.css"> -->
+    <style>
+      body {
+        padding: 15px;
+      }
+
+      .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+      }
+
+      .selectize-control > .selectize-dropdown {
+        top: 36px;
+      }
+
+      .temp-panel-container {
+        width: 100%;
+        border: 1px solid red;
+      }
+
+      .temp-panel {
+        width: 24%;
+        float: left;
+        border: 1px solid pink;
+
+      }
+
+      .temp-panel .span6 {
+        width: 50%;
+        float: left;
+      }
+
+      .temp-panel .temp-row {
+        margin-bottom: 15px;
+      }
+
+      .field-panel-row {
+        margin-bottom: 15px;
+      }
+
+      .btn-block {
+        display: block;
+        height: 40px;
+        border-radius: 4px;
+        color: #ffffff;
+      }
+
+      .btn-green {
+        border: solid 2px #009010;
+        background: #34ad40;
+      }
+
+      .btn-red {
+        border: solid 2px #ce5935;
+        background: #e6643c;
+      }
+
+      .clear-fix {
+        clear:both; display:block;
+      }
+
+    </style>
+  </head>
+
+  <body ng-controller="ImporterCtrl">
+    <h1>CSV Importer</h1>
+    <file-load file-model="files"></file-load>
+    <h2>Unmapped Fields</h2>
+    <div class="clear-fix">
+      <conveyor-belt payload="unmatchedFields">
+        <div class="belt-link-inner">
+          <field-panel foreign-field="item"></field-panel>
+        </div>
+      </conveyor-belt>
+    </div>
+    <h2>Mapped Fields</h2>
+    <div class="clear-fix">
+      <conveyor-belt payload="matchedFields">
+        <div class="belt-link-inner">
+          <field-panel foreign-field="item"></field-panel>
+        </div>
+      </conveyor-belt>
+    </div>
+
+    <div class="clear-fix">
+      <h2>Ignored Fields</h2>
+      <conveyor-belt payload="ignoredFields">
+        <div class="belt-link-inner">
+          <field-panel foreign-field="item"></field-panel>
+        </div>
+      </conveyor-belt>
+    </div>
+  </body>
+</html>
